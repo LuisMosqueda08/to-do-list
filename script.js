@@ -20,14 +20,19 @@ function renderTarea(texto){
     const li = document.createElement('li');
     li.textContent = texto;
 
-    const btnEliminar = document.createElement('button');
-    btnEliminar.textContent = '❌'
+    // Fondo aleatorio para la tarea
+    const imagenAleatoria = imagenesFondo[Math.floor(Math.random() * imagenesFondo.length)];
+    li.style.backgroundImage = `url('${imagenAleatoria}')`;
+    li.style.backgroundSize = 'cover';
+    li.style.backgroundPosition = 'center';
 
-    //Evento para al hacer click en la X eliminar la tarea
+    const btnEliminar = document.createElement('button');
+    btnEliminar.textContent = '❌';
+
     btnEliminar.addEventListener('click', () => {
-        tareas = tareas.filter(t => t !== texto);//Se quita la tarea del array
-        guardarEnLocalStorage();//Se guarda el nuyevo array
-        li.remove();//Se quita el elemento del DOM
+        tareas = tareas.filter(t => t !== texto);
+        guardarEnLocalStorage();
+        li.remove();
     });
 
     li.appendChild(btnEliminar);
@@ -52,3 +57,15 @@ form.addEventListener('submit', function (e) {
     renderTarea(texto); // se muestra la tarea
     input.value = ''; //se limpia el campo de entrada
 });
+
+const imagenesFondo = [
+  'img/junjito2.jpg',
+  'img/junjito3.jpg',
+  'img/junjito4.jpg',
+  'img/junjito5.jpg',
+  'img/junjito6.jpg',
+  'img/junjito7.jpg',
+  'img/junjito8.jpg'
+]
+
+
